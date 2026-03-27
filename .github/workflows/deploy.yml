@@ -1,28 +1,24 @@
-name: Full CI/CD Pipeline
+name: React CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    - name: Setup Node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-    - name: Install Dependencies
-      run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Build Project
-      run: npm run build
-
-    # 🔥 THIS IS YOUR DEPLOY CODE
-    - name: Deploy to Vercel
-      run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project
+        run: npm run build
